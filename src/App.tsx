@@ -1,7 +1,9 @@
-import AppRoutes from "./routes/AppRoutes";
+import SelecaoEscola from './pages/Home/selecao-escola'; // Ajuste o caminho se estiver dentro de uma pasta (ex: './components/selecao-escola')
 
-function App() {
-  return <AppRoutes />;
+export default function App() {
+  return (
+    <div>
+      <SelecaoEscola />
+    </div>
+  );
 }
-
-export default App;
