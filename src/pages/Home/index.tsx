@@ -3,56 +3,122 @@ import ArrowIcon from "../../assets/icons/arrow.svg";
 import { useState } from "react";
 
 export default function Home() {
-    const [typeLogin, setTypeLogin] = useState("secretaria")
+    const [typeLogin, setTypeLogin] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
 
-    function veryfi() {
-        if (typeLogin == "secretaria") {
-            return (
-                <>
-                    <div className="text-bold">Quem está entrando</div>
+    const options = [
+        {
+            value: "secretaria",
+            label: "Secretaria",
+        },
+        {
+            value: "inspetor",
+            label: "Inspetor(a)",
+        },
+        {
+            value: "nutricionista",
+            label: "Nutricionista",
+        },
+    ];
 
-                    <div className="input">
-                        <input type="text" className="taxt-notbold" placeholder="Escolher" />
-
-                        <img className="arrow" src={ArrowIcon} alt="Seta" />
-                    </div>
-
-                    <div className="text-bold">Quem está entrando</div>
-
-                    <div className="input">
-                        <input type="text" className="taxt-notbold" placeholder="Escolher" />
-
-                        <img className="arrow" src={ArrowIcon} alt="Seta" />
-                    </div>
-                </>
-            )
-        }
+    function selectOption(option) {
+        setTypeLogin(option.value);
+        setIsOpen(false);
     }
+
     return (
         <div className="container-grid">
             <div className="card">
                 <div className="title-top">
-                    <div className="text-bold">Seja bem-vindo à SACE</div>
+                    <div className="text-bold">
+                        Seja bem-vindo à SACE
+                    </div>
+
                     <div className="text-notbold">
                         Preencha os dados abaixo para acessar.
                     </div>
                 </div>
 
                 <div className="title-mid">
-                    <div className="text-bold">Quem está entrando</div>
 
-                    <div className="input">
-                        <input type="text" className="taxt-notbold" placeholder="Escolher" />
-
-                        <img className="arrow" src={ArrowIcon} alt="Seta" />
+                    <div className="text-bold">
+                        QUEM ESTÁ ENTRANDO
                     </div>
 
-                    {veryfi()}
+                    <div className="select">
+
+                        <div
+                            className="input"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            <span className="text-notbold">
+                                {typeLogin
+                                    ? options.find(
+                                          (o) => o.value === typeLogin
+                                      ).label
+                                    : "Escolher"}
+                            </span>
+
+                            <img
+                                className={`arrow ${isOpen ? "open" : ""}`}
+                                src={ArrowIcon}
+                                alt=""
+                            />
+                        </div>
+
+                        {isOpen && (
+                            <div className="options">
+                                {options.map((option) => (
+                                    <div
+                                        key={option.value}
+                                        className="option"
+                                        onClick={() =>
+                                            selectOption(option)
+                                        }
+                                    >
+                                        {option.label}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {typeLogin && (
+                        <>
+                            <div className="text-bold">
+                                CPF
+                            </div>
+
+                            <div className="input">
+                                <input
+                                    type="text"
+                                    placeholder="123.456.789-12"
+                                />
+                            </div>
+
+                            <div className="text-bold">
+                                SENHA
+                            </div>
+
+                            <div className="input">
+                                <input
+                                    type="password"
+                                    placeholder="**"
+                                />
+                            </div>
+
+                            <button className="btn-login">
+                                ENTRAR
+                            </button>
+                        </>
+                    )}
                 </div>
 
-
-
-                <div className="section-down text-notbold">O SACE é o Sistema de Acompanhamento do Consumo Escolar da Secretaria Municipal de Educação de Caraguatatuba.</div>
+                <div className="section-down text-notbold">
+                    O SACE é o Sistema de Acompanhamento do
+                    Consumo Escolar da Secretaria Municipal
+                    de Educação de Caraguatatuba.
+                </div>
             </div>
 
             <div className="card"></div>
