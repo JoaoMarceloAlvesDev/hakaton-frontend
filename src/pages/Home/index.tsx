@@ -103,7 +103,7 @@ export default function Home() {
                             <div className="input">
                                 <input
                                     type="password"
-                                    placeholder="********"
+                                    placeholder="**"
                                 />
                             </div>
 
