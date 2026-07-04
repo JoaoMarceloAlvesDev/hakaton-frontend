@@ -1,6 +1,7 @@
 import "./index.css";
 import ArrowIcon from "../../assets/icons/arrow.svg";
 import { useState } from "react";
+import Cardapio from "./components/cardapio";
 
 export default function Home() {
     const [typeLogin, setTypeLogin] = useState("");
@@ -28,7 +29,7 @@ export default function Home() {
 
     return (
         <div className="container-grid">
-            <div className="card">
+            <div className="card card-login">
                 <div className="title-top">
                     <div className="text-bold">
                         Seja bem-vindo à SACE
@@ -54,8 +55,8 @@ export default function Home() {
                             <span className="text-notbold">
                                 {typeLogin
                                     ? options.find(
-                                          (o) => o.value === typeLogin
-                                      ).label
+                                        (o) => o.value === typeLogin
+                                    ).label
                                     : "Escolher"}
                             </span>
 
@@ -120,9 +121,23 @@ export default function Home() {
                     de Educação de Caraguatatuba.
                 </div>
             </div>
-
-            <div className="card"></div>
-            <div className="card"></div>
+            
+            <div className="container-card">
+                <div className="card">
+                    <Cardapio
+                        titulo="CARDÁPIO CEI"
+                        subtitulo="CRIANÇAS DE 6 A 12 MESES"
+                        cor="#024B7E"
+                    />
+                </div>
+                <div className="card">
+                    <Cardapio
+                        titulo="CARDÁPIO CEI/EMEI"
+                        subtitulo="CRIANÇAS DE 1 A 5 ANOS"
+                        cor="#4C77B8"
+                    />
+                </div>
+            </div>
         </div>
     );
 }
